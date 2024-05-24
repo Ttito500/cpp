@@ -9,37 +9,10 @@ double area(double radius); //circle
 double area(double b, double h, char shape); //triangle
 
 int main(){
+    std::cout << area(5, 5) << " 5x5 rectangle\n";
+    std::cout << area(2) << " circle of radius 2\n";
+    std::cout << area(5, 5, 't') << " area of a b=5 h=5 triangle\n";
 
-    double res;
-    std::string input;
-    do
-    {
-        std::cout << "Write b h, radius or b h shape\n";
-        std::getline(std::cin, input);
-
-       switch (input.length())
-       {
-       case 1:
-        std::cout << "Circle area: " << area(std::stod(input)) << '\n';
-        break;
-       case 3:
-        double b = std::stod(input.at(0));
-        double h = std::stod(input.at(2));
-        std::cout << "Rectangle area: " << area(b, h) << '\n';
-        break;
-       case 5:
-        double b = std::stod(input.at(0));
-        double h = std::stod(input.at(2));
-        std::cout << "triangle area: " << area(b, h, 't') << '\n';
-        break;
-       default:
-        std::cout << "invalid input";
-        break;
-       }
-        
-        
-    } while (res > 0);
-    
     return 0;
 }
 
