@@ -37,6 +37,22 @@ bool isLuhn(std::string num){
         ++index;
     }
 
+    int doublesum;
+
+    for (size_t i = 0; i < 16; i += 2)
+    {
+        int num = digits[i] * 2;
+        if (num > 9)
+        {
+            doublesum += (num / 10) + (num % 10);
+        } else
+        {
+            doublesum += num;
+        }
+        
+    }
+    
+
     
 
     return true;
