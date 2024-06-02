@@ -13,17 +13,17 @@ int main(){
     std::string carnum;
     std::cout << "insert ur credit card number:\n";
     std::cin >> carnum;
-/*
-    if (!isLuhn(std::to_string(carnum)))
+
+    if (!isLuhn(carnum))
     {
         std::cout << "number incorrect\n";
     } else
     {
         std::cout << "thanks\n";
     }
-  */  
+   
 
-    isLuhn(carnum);
+    //isLuhn(carnum);
     return 0;
 }
 
@@ -52,8 +52,26 @@ bool isLuhn(std::string num){
         
     }
     
+    int oddsum;
 
+    for (size_t i = 0; i < 16; i++)
+    {
+        if (digits[i] % 2 == 0)
+        {
+            continue;
+        } else
+        {
+            oddsum += digits[i];
+        }
+        
+    }
     
-
-    return true;
+    if ((doublesum + oddsum) % 10 == 0)
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+    
 }
