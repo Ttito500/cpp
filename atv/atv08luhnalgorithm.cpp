@@ -1,77 +1,41 @@
-//double every second digit from right to left
-//if the number is 2 digits after doubling, split them
-//add it all up
-//add all odd numbers from right to left in the original number
-//sum these 2
-//if this sum is divisible by 10, the number is valid
-
 #include <iostream>
 
-bool isLuhn(std::string num); //it accepts a string so we can divide into digits more easily
+bool isLuhn(const std::string& num);
 
-int main(){
+int main() {
     std::string carnum;
-    std::cout << "insert ur credit card number:\n";
+    std::cout << "Insert your credit card number:\n";
     std::cin >> carnum;
 
-    if (!isLuhn(carnum))
-    {
-        std::cout << "number incorrect\n";
-    } else
-    {
-        std::cout << "thanks\n";
+    if (!isLuhn(carnum)) {
+        std::cout << "Number incorrect\n";
+    } else {
+        std::cout << "Thanks\n";
     }
-   
 
-    //isLuhn(carnum);
     return 0;
 }
 
-bool isLuhn(std::string num){
-    int digits[16];
+bool isLuhn(const std::string& num) {
+    int n = num.size();
+    int doublesum = 0;
+    int oddsum = 0;
 
-    int index = 0;
-    for(char dig : num)
-    {
-        digits[index] = dig - '0';
-        ++index;
-    }
+    for (int i = n - 1; i >= 0; i--) {
+        int digit = num[i] - '0';
 
-    int doublesum;
-
-    for (size_t i = 0; i < 16; i += 2)
-    {
-        int num = digits[i] * 2;
-        if (num > 9)
-        {
-            doublesum += (num / 10) + (num % 10);
-        } else
-        {
-            doublesum += num;
+        if ((n - i) % 2 == 0) {
+            digit *= 2;
+            if (digit > 9) {
+                digit -= 9;
+            }
+            doublesum += digit;
+        } else {
+            oddsum += digit;
         }
-        
     }
-    
-    int oddsum;
 
-    for (size_t i = 0; i < 16; i++)
-    {
-        if (digits[i] % 2 == 0)
-        {
-            continue;
-        } else
-        {
-            oddsum += digits[i];
-        }
-        
-    }
-    
-    if ((doublesum + oddsum) % 10 == 0)
-    {
-        return true;
-    } else
-    {
-        return false;
-    }
-    
+    int total = doublesum + oddsum;
+
+    return (total % 10 == 0);
 }
