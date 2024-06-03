@@ -80,7 +80,62 @@ void cpuplay(char (&matrix)[3][3]){
     }    
 }
 
-char checkvictory(char (&matrix)[3][3]);
+char checkvictory(char (&matrix)[3][3]){ //returns the char of the player who won
+    for (size_t i = 0; i < 3; i++)
+    {
+        if(matrix[i][0] && matrix[i][1] == matrix[i][2]){
+            return matrix[i][2];
+            break;
+        }
+    }
+
+    for (size_t i = 0; i < 3; i++)
+    {
+        if(matrix[0][i] && matrix[1][i] == matrix[2][i]){
+            return matrix[i][2];
+            break;
+        }
+    }
+    
+    if (matrix[0][0] && matrix[1][1] == matrix[2][2])
+    {
+        return matrix[2][2];
+    }
+
+    if (matrix[0][2] && matrix[1][1] == matrix[2][0])
+    {
+        return matrix[2][0];
+    }
+    
+    bool gameend = NULL;
+
+    for (size_t i = 0; i < 3; i++)
+    {
+        for (size_t j = 0; j < 3; j++)
+        {
+            if (matrix[i][j] == 'e')
+            {
+                gameend = false;
+                break;
+            }
+            if (gameend == false)
+            {
+                break;
+            }else
+            {
+                gameend = true;
+            }
+            
+        }
+    }
+
+    if (gameend)
+    {
+        return 'v';
+    }
+    
+    return 'e';
+}
 
 void showgame(char (&matrix)[3][3]){
     for (size_t i = 0; i < 3; i++)
