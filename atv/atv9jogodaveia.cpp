@@ -42,6 +42,21 @@ int main(){
         }
         
         showgame(matrix);
+
+        if (checkvictory(matrix) == 'x')
+        {
+            std::cout << "x ganhou\n";
+            break;
+        } else if (checkvictory(matrix) == 'o')
+        {
+            std::cout << "o ganhou\n";
+            break;
+        } else if(checkvictory(matrix) == 'v')
+        {
+            std::cout << "deu veia\n";
+            break;
+        }
+        
         i++;
     }
     
