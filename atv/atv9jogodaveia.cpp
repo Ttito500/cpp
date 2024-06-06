@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-void play(char (&matrix)[3][3], char xo, int x, int y);
+void play(char (&matrix)[3][3], char xo, int& i, int x, int y);
 void cpuplay(char (&matrix)[3][3]);
 char checkvictory(char (&matrix)[3][3]);
 void showgame(char (&matrix)[3][3]);
@@ -13,7 +13,7 @@ void showgame(char (&matrix)[3][3]);
 int main(){
     char matrix[3][3];
     for (size_t i = 0; i < 3; i++)
-    {
+    { 
         for (size_t j = 0; j < 3; j++)
         {
             matrix[i][j] = 'e';
@@ -35,7 +35,7 @@ int main(){
             x = playerMove.at(0) - '0';
             y = playerMove.at(2) - '0';
 
-            play(matrix, 'x', x, y);
+            play(matrix, 'x',i , x, y);
         }else
         {
             cpuplay(matrix);
@@ -63,7 +63,7 @@ int main(){
     return 0;
 }
 
-void play(char (&matrix)[3][3], char xo, int x, int y){
+void play(char (&matrix)[3][3], char xo, int& i, int x, int y){
     if (matrix[x][y] == 'e')
     {
         matrix[x][y] = xo;
@@ -71,6 +71,7 @@ void play(char (&matrix)[3][3], char xo, int x, int y){
     }else
     {
         std::cout << "faz o L\n";
+        i--;
     }
 }
 
@@ -96,28 +97,28 @@ void cpuplay(char (&matrix)[3][3]){
 }
 
 char checkvictory(char (&matrix)[3][3]){ //returns the char of the player who won
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 3; i++) //teste das rows
     {
-        if(matrix[i][0] && matrix[i][1] == matrix[i][2]){
+        if(matrix[i][0] ==  matrix[i][2] && matrix[i][1] == matrix[i][2]){
             return matrix[i][2];
             break;
         }
     }
 
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 3; i++) // teste das coluns
     {
-        if(matrix[0][i] && matrix[1][i] == matrix[2][i]){
+        if(matrix[0][i] == matrix[2][i] && matrix[1][i] == matrix[2][i]){
             return matrix[i][2];
             break;
         }
     }
     
-    if (matrix[0][0] && matrix[1][1] == matrix[2][2])
+    if (matrix[0][0] == matrix[2][2] && matrix[1][1] == matrix[2][2])
     {
         return matrix[2][2];
     }
 
-    if (matrix[0][2] && matrix[1][1] == matrix[2][0])
+    if (matrix[0][2] == matrix[2][0] && matrix[1][1] == matrix[2][0])
     {
         return matrix[2][0];
     }
