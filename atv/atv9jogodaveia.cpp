@@ -99,26 +99,26 @@ void cpuplay(char (&matrix)[3][3]){
 char checkvictory(char (&matrix)[3][3]){ //returns the char of the player who won
     for (size_t i = 0; i < 3; i++) //teste das rows
     {
-        if(matrix[i][0] ==  matrix[i][2] && matrix[i][1] == matrix[i][2]){
+        if(matrix[i][0] ==  matrix[i][1] && matrix[i][1] == matrix[i][2]){
             return matrix[i][2];
             break;
-        }
+        }   
     }
 
     for (size_t i = 0; i < 3; i++) // teste das coluns
     {
-        if(matrix[0][i] == matrix[2][i] && matrix[1][i] == matrix[2][i]){
-            return matrix[i][2];
+        if(matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i]){
+            return matrix[2][i];
             break;
         }
     }
     
-    if (matrix[0][0] == matrix[2][2] && matrix[1][1] == matrix[2][2])
+    if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2])
     {
         return matrix[2][2];
     }
 
-    if (matrix[0][2] == matrix[2][0] && matrix[1][1] == matrix[2][0])
+    if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0])
     {
         return matrix[2][0];
     }
