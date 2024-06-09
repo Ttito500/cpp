@@ -75,7 +75,7 @@ void play(char (&matrix)[3][3], char xo, int& i, int x, int y){
     }
 }
 
-void cpuplay(char (&matrix)[3][3]){
+void cpuplay(char (&matrix)[3][3]){ //so joga em uma linha reta
     bool played = false;
 
     for (size_t i = 0; i < 3; i++)
@@ -113,17 +113,17 @@ char checkvictory(char (&matrix)[3][3]){ //returns the char of the player who wo
         }
     }
     
-    if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2])
+    if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2])// diagonal principal
     {
         return matrix[2][2];
     }
 
-    if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0])
+    if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0])  // diagonal secundaria
     {
         return matrix[2][0];
     }
     
-    bool gameend = NULL;
+    bool gameend = true; //teste se n há mais moves
 
     for (size_t i = 0; i < 3; i++)
     {
@@ -134,15 +134,12 @@ char checkvictory(char (&matrix)[3][3]){ //returns the char of the player who wo
                 gameend = false;
                 break;
             }
-            if (gameend == false)
-            {
-                break;
-            }else
-            {
-                gameend = true;
-            }
-            
         }
+        if (!gameend)
+        {
+            break;
+        }
+        
     }
 
     if (gameend)
