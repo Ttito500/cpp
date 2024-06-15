@@ -20,5 +20,7 @@ int main(){
     std::cout << "Is it alive?\n";
     std::cin >> customer1.alive;
 
+    std::cout << customer1.breed << ' ' << customer1.age << ' ' << customer1.alive << '\n';
+
     return 0;
 }
