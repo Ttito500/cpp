@@ -7,7 +7,7 @@ int main(){
     std::cout << "quantas notas?\n";
     std::cin >> size;
 
-    pNum = new int[size];
+    pNum = new int[size]; // new retrns a space in the memory
 
     for (size_t i = 0; i < size; i++)
     {
