@@ -29,8 +29,13 @@ class Shape{
     private:
         std::string name;
     public:
+
+        virtual bool inside(Coordinates p) = 0; //determines if a point p is inside of the shape
+        virtual double getArea() = 0; //returns the area of the shape
+        virtual double getPerimeter() = 0; //returns the perimeter of the shape
+
         std::string show(){
-            
+            std::cout << "the area of the shape is: " << getArea() << " and its perimeter is: " << getPerimeter();
         }
 };
 
