@@ -26,10 +26,8 @@ class Coordinates{
 };
 
 class Shape{
-    private:
-        std::string name;
     public:
-
+        std::string name;
         virtual bool inside(Coordinates p) = 0; //determines if a point p is inside of the shape
         virtual double getArea() = 0; //returns the area of the shape
         virtual double getPerimeter() = 0; //returns the perimeter of the shape
@@ -37,6 +35,24 @@ class Shape{
         std::string show(){
             std::cout << "the area of the shape is: " << getArea() << " and its perimeter is: " << getPerimeter();
         }
+};
+
+class Circle : public Shape{
+    public:
+        Coordinates center;
+        double radius;
+
+        Circle(Coordinates center, double radius){
+            this->center = center;
+            this->radius = radius;
+        }
+
+        bool inside(Coordinates p) override{
+
+        }
+
+        
+
 };
 
 int main(){
